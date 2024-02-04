@@ -1,6 +1,6 @@
 # MLOPS_ALLAN_ALVAREZ
 
-_______________________# Proyecto Individual N°1: ML-OPS_____________________
+# Proyecto Individual N°1: ML-OPS
 
 Este proyecto consiste en crear un sistema de recomendación de videojuegos para usuarios de Steam, utilizando los datos proporcionados por HENRY. El proyecto abarca todas las fases del ciclo de vida de un proyecto de Machine Learning, desde la preparación de los datos hasta el despliegue de la API.
 
