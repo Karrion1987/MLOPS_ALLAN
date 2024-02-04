@@ -21,16 +21,14 @@ app = FastAPI()
 @app.get("/")
 def read_root():
     return {
-        "Hola": "¡Bienvenido a mi Proyecto de MLOPS en Henry!",
-        "Te invito a": "Explorar el fascinante mundo de Machine Learning y DevOps.",
-        "Autor_proyecto": {
-            "DataScientist": "Allan Alvarez Gonzalez",
-            "Mensaje": "Autor de este emocionante proyecto."
-        },
-        "explora": "¡Explora el código y las implementaciones prácticas!",
-        "comentarios": "Colabora proponiendo mejoras o compartiendo tus impresiones.",
-        "gracias": "¡Gracias por ser parte de esta emocionante travesía!",
-        "Puedes consultar la documentación en": "https://api-functions.onrender.com/docs"
+        "Hola Bienvenido a mi Proyecto de MLOPS en Henry!",
+        "Te invito explorar el fascinante mundo de Machine Learning y DevOps.",
+        "DataScientist Allan Alvarez Gonzalez",
+        "Autor de este emocionante proyecto."
+        "¡Explora el código y las implementaciones prácticas!",
+        "Colabora proponiendo mejoras o compartiendo tus impresiones.",
+        "¡Gracias por ser parte de esta emocionante travesía!",
+        "Puedes consultar la documentación en https://api-functions.onrender.com/docs"
     }
 
 # ejecutar uvicorn main:app --reload para cargar en el servidor
