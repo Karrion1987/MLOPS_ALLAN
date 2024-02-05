@@ -1,6 +1,6 @@
 # MLOPS_ALLAN_ALVAREZ
-
-# Proyecto Individual N°1
+![alt text](<Imagen de WhatsApp 2024-02-05 a las 18.09.43_191077da.jpg>)
+# Proyecto Individual N°1 HENRY LABS
 
 Este proyecto consiste en crear un sistema de recomendación de videojuegos para usuarios de Steam, utilizando los datos proporcionados por HENRY. El proyecto abarca todas las fases del ciclo de vida de un proyecto de Machine Learning, desde la preparación de los datos hasta el despliegue de la API.
 
@@ -29,7 +29,7 @@ En esta sección, exploraremos a fondo los datos proporcionados para obtener ins
 
 4. **Conclusiones Preliminares:**
    - Se resumen las observaciones clave y posibles patrones identificados durante el EDA.
-   - [Incluir aquí cualquier conclusión relevante.]
+   - Se concluyo que existe una gran cantidad de valor faltantes, nulos y que no representan datos de valor en la toma de decisiones pues estan dispuestos para la limpieza y transformacion.
 
 Estos pasos proporcionan una base sólida para comprender la naturaleza de los datos y orientarán las decisiones futuras en el proyecto. Consulta las secciones correspondientes para obtener detalles más profundos sobre cada etapa del EDA.
 
@@ -98,39 +98,6 @@ La API proporciona diversas funciones para analizar datos relacionados con juego
     - Dinero Gastado: "200 USD"
     - % de Recomendación: "20%"
     - Cantidad de Items: 5
-
-- **Obtener Usuario por Género y Horas Jugadas:**
-  - **Endpoint:** `/user_for_genre/genre`
-  - **Método:** GET
-  - **Descripción:** Devuelve el usuario que acumula más horas jugadas para el género dado y una lista de la acumulación de horas jugadas por año de lanzamiento.
-  - **Ejemplo de Uso:** `GET /user_for_genre/Action`
-  - **Respuesta Esperada:**
-  
-    - Usuario con más horas jugadas para Género Acción: "us213ndjss09sdf"
-    - Horas Jugadas:
-      - Año: 2013, Horas: 203
-      - Año: 2012, Horas: 100
-      - Año: 2011, Horas: 23
-
-- **Mejores Desarrolladores para un Año Específico:**
-  - **Endpoint:** `/best_developer/anio`
-  - **Método:** GET
-  - **Descripción:** Devuelve el top 3 de desarrolladores con juegos MÁS recomendados por usuarios para el año dado.
-  - **Ejemplo de Uso:** `GET /best_developer/2019`
-  - **Respuesta Esperada:**
-  
-    - Puesto 1: "Developer_X"
-    - Puesto 2: "Developer_Y"
-    - Puesto 3: "Developer_Z"
-
-- **Análisis de Reseñas por Desarrolladora:**
-  - **Endpoint:** `/developer_reviews_analysis/desarrollador`
-  - **Método:** GET
-  - **Descripción:** Según el desarrollador, devuelve un diccionario con el nombre del desarrollador como llave y una lista con la cantidad total de registros de reseñas de usuarios categorizados con un análisis de sentimiento como positivo o negativo.
-  - **Ejemplo de Uso:** `GET /developer_reviews_analysis/Valve`
-  - **Respuesta Esperada:**
-    
-    - Valve: Negativo = 182, Positivo = 278
 
 
 Estas funciones te permitirán explorar y analizar datos relevantes para tu proyecto. ¡No dudes en experimentar con diferentes parámetros y ajustar las consultas según tus necesidades específicas!
