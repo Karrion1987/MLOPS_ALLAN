@@ -12,24 +12,83 @@ import re
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from fastapi.encoders import jsonable_encoder
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 
 # Creacion de una aplicacion FastApi
 
 app = FastAPI()
 
-# App de prueba (ejemplo)
-@app.get("/")
-def read_root():
-    return {
-        "Hola Bienvenido a mi Proyecto de MLOPS en Henry!",
-        "Te invito explorar el fascinante mundo de Machine Learning y DevOps.",
-        "DataScientist Allan Alvarez Gonzalez",
-        "Autor de este emocionante proyecto."
-        "¡Explora el código y las implementaciones prácticas!",
-        "Colabora proponiendo mejoras o compartiendo tus impresiones.",
-        "¡Gracias por ser parte de esta emocionante travesía!",
-        "Puedes consultar la documentación en https://api-functions.onrender.com/docs"
-    }
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
+def read_root_html():
+    message = """
+    <style>
+        body {
+            background-color: #f0f0f0;
+            color: #333;
+            font-family: Arial, sans-serif;
+        }
+
+        div {
+            width: 100%;
+            text-align: center;
+            margin: auto;
+        }
+
+        .welcome-message {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #6c757d; /* Gris */
+        }
+
+        .invite-message {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #7952b3; /* Violeta */
+        }
+
+        .collaborate-message {
+            font-size: 16px;
+            color: #6c757d; /* Gris */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .main-button {
+            font-size: 16px;
+            color: #fff;
+            background-color: #7952b3; /* Violeta */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .main-button:hover {
+            background-color: #6a4b9e; /* Cambio de color al pasar el ratón sobre el botón */
+        }
+    </style>
+    <div>
+        <div class="welcome-message">¡Bienvenido a mi Proyecto de MLOPS en Henry!</div>
+        <div class="invite-message">Te invito a explorar el fascinante mundo de Machine Learning y Ops.</div>
+        <div class="collaborate-message">Te comparto mi sistema de recomendacion de la plataforma STEAM.</div>
+        <div class="button-container">
+            <form action='/redirect' style="display: inline-block;">
+                <input class="main-button" type='submit' value='Continuar'>
+            </form>
+        </div>
+    </div>
+    """
+    return HTMLResponse(content=message)
+
+@app.get("/redirect", include_in_schema=False)
+def redirect_to_docs():
+    link = "https://api-functions.onrender.com/docs"
+    raise HTTPException(status_code=302, detail="Redirecting", headers={"Location": link})
+
 
 # ejecutar uvicorn main:app --reload para cargar en el servidor
 
