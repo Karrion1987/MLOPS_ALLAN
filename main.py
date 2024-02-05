@@ -14,7 +14,7 @@ from sklearn.metrics.pairwise import linear_kernel
 from fastapi.encoders import jsonable_encoder
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
-
+from fastapi.responses import JSONResponse
 # Creacion de una aplicacion FastApi
 
 app = FastAPI()
@@ -184,11 +184,10 @@ def userdata(user_id: str):
 
 
 # ------- FUNCION user_for_genre ----------
+# ------- FUNCION user_for_genre ----------
 
-@app.get("/user_for_genre/{genre}", response_model=dict)
+@app.get("/user_for_genre/{genre}")
 def user_for_genre(genre: str):
-    
-    # Lee los archivos parquet una sola vez
     current_directory = os.path.dirname(os.path.abspath(__file__))
     path_to_parquet_games = os.path.join(current_directory, 'data', 'df_games_genres.parquet')
     path_to_parquet_users = os.path.join(current_directory, 'data', 'df_users_horas.parquet')
@@ -204,7 +203,7 @@ def user_for_genre(genre: str):
     df_filtered = df_genres_horas[df_genres_horas['genres'] == genre]
 
     if df_filtered.empty:
-        return {"message": "No data found for the given genre"}
+        return JSONResponse(content={"message": "No data found for the given genre"})
 
     # Encontrar el usuario que acumula más horas jugadas para el género dado
     max_user_data = df_filtered.groupby(['user_id', 'anio'])['playtime_forever'].sum().idxmax()
@@ -222,9 +221,7 @@ def user_for_genre(genre: str):
         "Horas jugadas": [{"Año": int(year), "Horas": int(hours)} for year, hours in horas_por_anio.reset_index().to_dict(orient='split')['data']]
     }
 
-    return result_dict
-
-
+    return JSONResponse(content=result_dict)
 
 # ------- FUNCION best_developer_year ----------
 
