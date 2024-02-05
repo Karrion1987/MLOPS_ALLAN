@@ -181,22 +181,22 @@ def userdata(user_id: str):
         'total_items': int(count_items)
     }
 
-# ------- FUNCION userdata ----------
-
-# Cargar los DataFrames una sola vez
-current_directory = os.path.dirname(os.path.abspath(__file__))
-path_to_games_parquet = os.path.join(current_directory, 'data', 'df_games_genres.parquet')
-df_games_genres = pq.read_table(path_to_games_parquet).to_pandas()
-
-path_to_users_parquet = os.path.join(current_directory, 'data', 'df_users_horas.parquet')
-df_users_horas = pq.read_table(path_to_users_parquet).to_pandas()
-
-# Unir ambos DataFrames
-df_genres_horas = df_games_genres.merge(df_users_horas, on='item_id', how='right')
+# ------- FUNCION user_for_genre ----------
 
 @app.get("/user_for_genre/{genre}", response_model=dict)
 def user_for_genre(genre: str):
-    # Filtrar antes de la fusión
+
+    # Lee el archivo parquet de la carpeta data
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    path_to_parquet = os.path.join(current_directory, 'data', 'df_games_genres.parquet')
+    df_games_genres = pq.read_table(path_to_parquet).to_pandas()
+    path_to_parquet = os.path.join(current_directory, 'data', 'df_users_horas.parquet')
+    df_users_horas = pq.read_table(path_to_parquet).to_pandas()
+
+    # Une ambos dataframes
+    df_genres_horas = df_games_genres.merge(df_users_horas, on='item_id', how='right')
+
+    # Filtra el DataFrame resultante para obtener solo las filas relacionadas con el género dado
     df_filtered = df_genres_horas[df_genres_horas['genres'] == genre]
 
     if df_filtered.empty:
@@ -208,12 +208,13 @@ def user_for_genre(genre: str):
     # Filtrar el DataFrame para obtener solo las filas relacionadas con el usuario que acumula más horas
     df_user_max_hours = df_filtered[df_filtered['user_id'] == max_user]
 
-    # Agrupar por año y sumar las horas jugadas utilizando agg
+    # Agrupar por año y sumar las horas jugadas
+    horas_por_anio = df_user_max_hours.groupby('anio')['playtime_forever'].sum()
+
+    # Construir el diccionario de resultados
     result_dict = {
         "Usuario con más horas jugadas para Género X": max_user,
-        "Horas jugadas": df_user_max_hours.groupby('anio').agg(
-            Horas=('playtime_forever', 'sum')
-        ).reset_index().to_dict(orient='records')
+        "Horas jugadas": [{"Año": int(year), "Horas": int(hours)} for year, hours in horas_por_anio.reset_index().to_dict(orient='split')['data']]
     }
 
     return result_dict
