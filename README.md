@@ -60,11 +60,29 @@ El código y los resultados del análisis y el modelado se pueden ver en el arch
 
 Para acceder a la funcionalidad del sistema de recomendación, se ha implementado una API usando el framework FastAPI. La API permite realizar las siguientes consultas:
 
-- Obtener la información de un juego por su nombre.
-- Obtener la lista de los 10 juegos más similares a un juego dado.
-- Obtener la información de un usuario por su id.
-- Obtener la lista de los juegos que posee un usuario y las horas que ha jugado.
-- Obtener la lista de los juegos que ha reseñado un usuario y el sentimiento asociado.
+developer(Valve):
+
+Retorno: Un diccionario con la información sobre la cantidad de items y el porcentaje de contenido gratuito por año según la empresa desarrolladora.
+userdata(greenfuzzie23):
+
+Retorno: Un diccionario con información sobre el usuario, incluyendo el dinero gastado, el porcentaje de recomendación basado en reviews.recommend, y la cantidad de items.
+UserForGenre(Adventure):
+
+Retorno: Un diccionario con el usuario que acumula más horas jugadas para el género dado y una lista de acumulación de horas jugadas por año de lanzamiento.
+best_developer_year(2010):
+
+Retorno: Una lista con el top 3 de desarrolladores con los juegos MÁS recomendados por usuarios para el año dado.
+developer_reviews_analysis(Valve):
+
+Retorno: Un diccionario con el nombre del desarrollador como clave y una lista con la cantidad total de registros de reseñas de usuarios categorizados con análisis de sentimiento positivo o negativo.
+
+recomendacion_juego(Gun Range VR):
+
+Retorno: Un diccionario o lista con 5 juegos recomendados similares al juego identificado por el producto_id. Estos juegos son seleccionados en función de la similitud con el juego ingresado.
+
+recomendacion_usuario(greenfuzzie23):
+
+Retorno: Un diccionario o lista con 5 juegos recomendados para el usuario identificado por el usuario_id. Estas recomendaciones se generan basándose en el historial o preferencias del usuario.
 
 La API se puede probar en la siguiente URL: [https://api-functions.onrender.com](^17^)
 
