@@ -283,7 +283,7 @@ def developer_reviews_analysis_endpoint(desarrollador: str):
 
     return result
 
-# ------- FUNCION developer_reviews_analysis ----------
+# ------- FUNCION Recomendacion_juego ----------
 
 @app.get("/recommendations/{title}")
 def get_recommendations(title: str):
@@ -358,17 +358,17 @@ def get_recomendacion_usuario(user_id: str):
             user_index = matching_users.index[0]
 
             # Obtener las recomendaciones basadas en similitud coseno y los filtros requeridos
-            recommendations = []
+            recomendaciones_user = []
             seen_games = set()  # Utilizar un conjunto para evitar duplicados
             for i, score in sorted(enumerate(cosine_sim[user_index]), key=lambda x: x[1], reverse=True):
                 if df_recomendacion_user['recommend'][i] and df_recomendacion_user['sentiment_analysis'][i] in [0, 1, 2]:
                     app_name = df_recomendacion_user['app_name'][i]
                     if app_name not in seen_games:
-                        recommendations.append({"app_name": app_name, "similarity": score})
+                        recomendaciones_user.append({"app_name": app_name, "similarity": score})
                         seen_games.add(app_name)
 
             # Seleccionar las primeras 5 recomendaciones
-            top_recommendations = recommendations[:5]
+            top_recommendations = recomendaciones_user[:5]
 
             # Preparar respuesta JSON
             response_data = {"user_id": user_id, "recommendations": top_recommendations}
