@@ -181,36 +181,33 @@ def userdata(user_id: str):
         'total_items': int(count_items)
     }
 
-
-
-# ------- FUNCION user_for_genre ----------
 # ------- FUNCION user_for_genre ----------
 
-@app.get("/user_for_genre/{genre}")
+@app.get("/user_for_genre/{genre}", response_model=dict)
 def user_for_genre(genre: str):
-    current_directory = os.path.dirname(os.path.abspath(__file__))
-    path_to_parquet_games = os.path.join(current_directory, 'data', 'df_games_genres.parquet')
-    path_to_parquet_users = os.path.join(current_directory, 'data', 'df_users_horas.parquet')
-    df_games_genres = pq.read_table(path_to_parquet_games).to_pandas()
-    df_users_horas = pq.read_table(path_to_parquet_users).to_pandas()
 
-    # Filtra antes de la unión
-    df_games_genres_filtered = df_games_genres[df_games_genres['genres'] == genre]
-    df_users_horas_filtered = df_users_horas[df_users_horas['item_id'].isin(df_games_genres_filtered['item_id'])]
-    df_genres_horas = df_games_genres_filtered.merge(df_users_horas_filtered, on='item_id', how='right')
+    # Lee el archivo parquet de la carpeta data
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    path_to_parquet = os.path.join(current_directory, 'data', 'df_games_genres.parquet')
+    df_games_genres = pq.read_table(path_to_parquet).to_pandas()
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    path_to_parquet = os.path.join(current_directory, 'data', 'df_users_horas.parquet')
+    df_users_horas = pq.read_table(path_to_parquet).to_pandas()
+
+    # Une ambos dataframes
+    df_genres_horas = df_games_genres.merge(df_users_horas, on='item_id', how='right')
 
     # Filtra el DataFrame resultante para obtener solo las filas relacionadas con el género dado
     df_filtered = df_genres_horas[df_genres_horas['genres'] == genre]
 
     if df_filtered.empty:
-        return JSONResponse(content={"message": "No data found for the given genre"})
+        return {"message": "No data found for the given genre"}
 
     # Encontrar el usuario que acumula más horas jugadas para el género dado
-    max_user_data = df_filtered.groupby(['user_id', 'anio'])['playtime_forever'].sum().idxmax()
-    max_user, max_anio = max_user_data[0], max_user_data[1]
+    max_user = df_filtered.groupby('user_id')['playtime_forever'].sum().idxmax()
 
     # Filtrar el DataFrame para obtener solo las filas relacionadas con el usuario que acumula más horas
-    df_user_max_hours = df_filtered[(df_filtered['user_id'] == max_user) & (df_filtered['anio'] == max_anio)]
+    df_user_max_hours = df_filtered[df_filtered['user_id'] == max_user]
 
     # Agrupar por año y sumar las horas jugadas
     horas_por_anio = df_user_max_hours.groupby('anio')['playtime_forever'].sum()
@@ -221,7 +218,8 @@ def user_for_genre(genre: str):
         "Horas jugadas": [{"Año": int(year), "Horas": int(hours)} for year, hours in horas_por_anio.reset_index().to_dict(orient='split')['data']]
     }
 
-    return JSONResponse(content=result_dict)
+    return result_dict
+
 
 # ------- FUNCION best_developer_year ----------
 
