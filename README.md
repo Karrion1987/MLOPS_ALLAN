@@ -1,5 +1,5 @@
 # MLOPS_ALLAN_ALVAREZ
-![alt text](Presentacion.jpg)
+![alt text](image.png)
 # Proyecto Individual N°1 HENRY LABS
 
 Este proyecto consiste en crear un sistema de recomendación de videojuegos para usuarios de Steam, utilizando los datos proporcionados por HENRY. El proyecto abarca todas las fases del ciclo de vida de un proyecto de Machine Learning, desde la preparación de los datos hasta el despliegue de la API.
@@ -25,7 +25,7 @@ En esta sección, exploraremos a fondo los datos proporcionados para obtener ins
 
 3. **Visualización de Datos:**
    - Se utilizaron gráficos y visualizaciones para explorar las distribuciones, relaciones y tendencias en los datos.
-   ![alt text](Correlacion.png)
+   ![alt text](image-1.png)
 
 4. **Conclusiones Preliminares:**
    - Se resumen las observaciones clave y posibles patrones identificados durante el EDA.
