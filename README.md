@@ -51,29 +51,36 @@ En esta etapa, se realizó el análisis exploratorio de los datos y se implement
 
 - Explorar las características y distribuciones de los datos, como el número de usuarios, juegos, reseñas, géneros, precios, etc.
 - Crear una matriz de similitud del coseno entre los juegos, usando las columnas de genres, sentiment_analysis y price.
-- Definir una función que recibe el nombre de un juego y devuelve una lista de los 10 juegos más similares, según la matriz de similitud.
+- Definir una función que recibe el nombre de un juego y devuelve una lista de los 5 juegos más similares, según la matriz de similitud.
 - Evaluar el rendimiento del sistema de recomendación usando un mapa de calor que muestra la similitud entre el juego consultado y los juegos recomendados.
 
-El código y los resultados del análisis y el modelado se pueden ver en el archivo ML.ipynb de la carpeta src del repositorio.
+El código y los resultados del análisis y el modelado se pueden ver en el archivo Machine_Learning.ipynb de la carpeta src del repositorio.
 
 ## API con FastAPI
 
-Para acceder a la funcionalidad del sistema de recomendación, se ha implementado una API usando el framework FastAPI. La API permite realizar las siguientes consultas:
+## Consultas Disponibles:
 
-developer(Valve):Retorno: Un diccionario con la información sobre la cantidad de items y el porcentaje de contenido gratuito por año según la empresa desarrolladora.
+### 1. developer(Valve):
+   - **Retorno:** Un diccionario con información sobre la cantidad de items y el porcentaje de contenido gratuito por año, según la empresa desarrolladora.
 
-userdata(greenfuzzie23):Retorno: Un diccionario con información sobre el usuario, incluyendo el dinero gastado, el porcentaje de recomendación basado en reviews.recommend, y la cantidad de items.
+### 2. userdata(greenfuzzie23):
+   - **Retorno:** Un diccionario con información sobre el usuario, incluyendo el dinero gastado, el porcentaje de recomendación basado en reviews.recommend, y la cantidad de items.
 
-UserForGenre(Adventure):Retorno: Un diccionario con el usuario que acumula más horas jugadas para el género dado y una lista de acumulación de horas jugadas por año de lanzamiento.
+### 3. UserForGenre(Adventure):
+   - **Retorno:** Un diccionario con el usuario que acumula más horas jugadas para el género dado y una lista de acumulación de horas jugadas por año de lanzamiento.
 
-best_developer_year(2010):Retorno: Una lista con el top 3 de desarrolladores con los juegos MÁS recomendados por usuarios para el año dado.
+### 4. best_developer_year(2010):
+   - **Retorno:** Una lista con el top 3 de desarrolladores con los juegos MÁS recomendados por usuarios para el año dado.
 
-developer_reviews_analysis(Valve):Retorno: Un diccionario con el nombre del desarrollador como clave y una lista con la cantidad total de registros de reseñas de usuarios categorizados con análisis de sentimiento positivo o negativo.
+### 5. developer_reviews_analysis(Valve):
+   - **Retorno:** Un diccionario con el nombre del desarrollador como clave y una lista con la cantidad total de registros de reseñas de usuarios categorizados con análisis de sentimiento positivo o negativo.
 
-recomendacion_juego(Gun Range VR):Retorno: Un diccionario o lista con 5 juegos recomendados similares al juego identificado por el producto_id. Estos juegos son seleccionados en función de la similitud con el juego ingresado.
+### 6. recomendacion_juego(Gun Range VR):
+   - **Retorno:** Un diccionario o lista con 5 juegos recomendados similares al juego identificado por el producto_id. Estos juegos son seleccionados en función de la similitud con el juego ingresado.
 
-recomendacion_usuario(greenfuzzie23):Retorno: Un diccionario o lista con 5 juegos recomendados para el usuario identificado por el usuario_id. Estas recomendaciones se generan basándose en el historial o preferencias del usuario.
-
+### 7. recomendacion_usuario(greenfuzzie23):
+   - **Retorno:** Un diccionario o lista con 5 juegos recomendados para el usuario identificado por el usuario_id. Estas recomendaciones se generan basándose en el historial o preferencias del usuario.
+   
 La API se puede probar en la siguiente URL: [https://api-functions.onrender.com](^17^)
 
 ## Despliegue en Render
