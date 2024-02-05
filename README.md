@@ -66,7 +66,7 @@ Para acceder a la funcionalidad del sistema de recomendación, se ha implementad
 - Obtener la lista de los juegos que posee un usuario y las horas que ha jugado.
 - Obtener la lista de los juegos que ha reseñado un usuario y el sentimiento asociado.
 
-La API se puede probar en la siguiente URL: [https://api-functions.onrender.com](^17^).
+La API se puede probar en la siguiente URL: [https://api-functions.onrender.com](^17^)
 
 ## Despliegue en Render
 
