@@ -25,7 +25,7 @@ En esta sección, exploraremos a fondo los datos proporcionados para obtener ins
 
 3. **Visualización de Datos:**
    - Se utilizaron gráficos y visualizaciones para explorar las distribuciones, relaciones y tendencias en los datos.
-   - [Incluir aquí enlaces o imágenes de las visualizaciones más relevantes.]
+   ![alt text](image.png)
 
 4. **Conclusiones Preliminares:**
    - Se resumen las observaciones clave y posibles patrones identificados durante el EDA.
