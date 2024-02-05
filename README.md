@@ -41,7 +41,7 @@ En esta etapa, se realizó el proceso de ETL para extraer, transformar y cargar 
 - Normalizar el formato de las fechas al estándar AAAA-MM-DD.
 - Identificar y corregir o eliminar los valores duplicados, nulos o incorrectos.
 - Seleccionar las columnas relevantes para el sistema de recomendación y los endpoints de la API.
-- Aplicar análisis de sentimiento a las reseñas de los usuarios usando la librería NLTK y crear una nueva columna llamada sentiment_analysis con valores 0 (negativo), 1 (neutral) o 2 (positivo).
+- Aplicar análisis de sentimiento a las reseñas de los usuarios usando la librería (textblob) y crear una nueva columna llamada sentiment_analysis con valores 0 (negativo), 1 (neutral) o 2 (positivo).
 
 Como resultado del proceso de ETL, se obtuvieron tres archivos CSV: steam_games.csv, user_reviews.csv y user_items.csv. Estos archivos se pueden encontrar en la carpeta ETL del repositorio en DRIVE.
 
