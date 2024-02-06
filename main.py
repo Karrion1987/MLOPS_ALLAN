@@ -281,47 +281,6 @@ def developer_reviews_analysis_endpoint(desarrollador: str):
 
     return result
 
-# ------- FUNCION Recomendacion_juego ----------
-
-@app.get("/recommendations/{title}")
-def get_recommendations(title: str):
-
-    # Lee el archivo parquet de la carpeta data
-    current_directory = os.path.dirname(os.path.abspath(__file__))
-    path_to_parquet = os.path.join(current_directory, 'data', 'df_recomendacion_juego.parquet')
-    df_recomendacion_juego = pq.read_table(path_to_parquet).to_pandas()
-    
-    
-    df = df_recomendacion_juego
-
-    # Configuración de TF-IDF
-    tfidf = TfidfVectorizer(stop_words='english')
-    df['ntags'] = df['ntags'].fillna('')
-    tfidf_matrix = tfidf.fit_transform(df['ntags'])
-    cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
-
-    indices = pd.Series(df.index, index=df['app_name']).drop_duplicates()
-
-    try:
-        # Obtener el índice del juego en la matriz de similitud coseno
-        idx = indices[title]
-
-        # Obtener las puntuaciones de similitud para el juego
-        sim_scores = list(enumerate(cosine_sim[idx]))
-
-        # Ordenar las puntuaciones de similitud por orden descendente
-        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-
-        # Obtener los índices de los 5 juegos más similares
-        game_indices = [i[0] for i in sim_scores[1:6]]
-
-        # Obtener los títulos de los 5 juegos más similares
-        recommendations = df['app_name'].iloc[game_indices]
-
-        return JSONResponse(content={'title': title, 'recommendations': recommendations.tolist()})
-
-    except KeyError:
-        raise HTTPException(status_code=404, detail=f'El juego {title} no se encuentra en el DataFrame.')
 
 # ------- FUNCION recomendacion_user ----------
 
