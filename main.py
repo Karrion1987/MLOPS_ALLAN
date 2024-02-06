@@ -195,7 +195,7 @@ def user_for_genre(genre: str):
     
     df_games_genres = df_games_genres.sample(frac=0.1, random_state=42)
     df_users_horas = df_users_horas.sample(frac=0.1, random_state=42)
-    
+
     # Une ambos dataframes
     df_genres_horas = df_games_genres.merge(df_users_horas, on='item_id', how='right')
 
@@ -290,7 +290,7 @@ def get_recommendations(title: str):
     current_directory = os.path.dirname(os.path.abspath(__file__))
     path_to_parquet = os.path.join(current_directory, 'data', 'df_recomendacion_juego.parquet')
     df_recomendacion_juego = pq.read_table(path_to_parquet).to_pandas()
-
+    df_recomendacion_juego = df_recomendacion_juego.sample(frac=0.1, random_state=42)
 
     df = df_recomendacion_juego
 
