@@ -291,7 +291,7 @@ def get_recommendations(title: str):
     path_to_parquet = os.path.join(current_directory, 'data', 'df_recomendacion_juego.parquet')
     df_recomendacion_juego = pq.read_table(path_to_parquet).to_pandas()
     
-
+    
     df = df_recomendacion_juego
 
     # Configuración de TF-IDF
