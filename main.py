@@ -290,7 +290,7 @@ def get_recommendations(title: str):
     current_directory = os.path.dirname(os.path.abspath(__file__))
     path_to_parquet = os.path.join(current_directory, 'data', 'df_recomendacion_juego.parquet')
     df_recomendacion_juego = pq.read_table(path_to_parquet).to_pandas()
-    df_recomendacion_juego = df_recomendacion_juego.sample(frac=0.4, random_state=42)
+    
 
     df = df_recomendacion_juego
 
