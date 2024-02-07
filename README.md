@@ -14,6 +14,8 @@ Los datos empleados para este proyecto se encuentran en tres archivos JSON con u
 
 Los datos se pueden descargar desde el siguiente enlace: [https://drive.google.com/drive/folders/1tRLbXi9pPaJM8nscWxKuRlOrArL5Z66q?usp=sharing](^13^).
 
+![alt text](image-2.png)
+
 ## Análisis Exploratorio de Datos (EDA)
 
 En esta sección, exploraremos a fondo los datos proporcionados para obtener insights valiosos y comprender mejor la naturaleza del conjunto de datos. A continuación, se presenta un resumen de los pasos clave realizados durante el EDA:
