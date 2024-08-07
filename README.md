@@ -83,7 +83,7 @@ El código y los resultados del análisis y el modelado se pueden ver en el arch
 ### 7. recomendacion_usuario(greenfuzzie23):
    - **Retorno:** Un diccionario o lista con 5 juegos recomendados para el usuario identificado por el usuario_id. Estas recomendaciones se generan basándose en el historial o preferencias del usuario.
    
-La API se puede probar en la siguiente URL: [https://api-functions.onrender.com](^17^)
+La API se puede probar en la siguiente URL: [https://api-functions.onrender.com/docs](^17^)
 
 ## Despliegue en Render
 
